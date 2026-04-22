@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Minalba | Tu Banca Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="auth-container" class="auth-wrapper">
+        <div class="glass-card auth-card">
+            <h1 class="logo">Banco <span>Minalba</span></h1>
+            <div id="login-form">
+                <h2>Iniciar Sesión</h2>
+                <input type="text" id="login-user" placeholder="Usuario">
+                <input type="password" id="login-pass" placeholder="Contraseña">
+                <button onclick="handleAuth('login')" class="btn-primary">Entrar</button>
+                <p>¿No tienes cuenta? <a href="#" onclick="toggleAuth()">Regístrate</a></p>
+            </div>
+            <div id="register-form" class="hidden">
+                <h2>Registro</h2>
+                <input type="text" id="reg-user" placeholder="Nuevo Usuario">
+                <input type="password" id="reg-pass" placeholder="Contraseña">
+                <button onclick="handleAuth('register')" class="btn-primary">Crear Cuenta</button>
+                <p>¿Ya tienes cuenta? <a href="#" onclick="toggleAuth()">Loguéate</a></p>
+            </div>
+        </div>
+    </div>
+
+    <main id="dashboard" class="hidden">
+        <nav class="navbar">
+            <div class="logo">Minalba <span>Digital</span></div>
+            <div class="user-info">
+                <span id="display-username">Usuario</span>
+                <button onclick="logout()" class="btn-logout">Salir</button>
+            </div>
+        </nav>
+
+        <section class="grid-container">
+            <div class="glass-card balance-card">
+                <h3>Saldo Disponible</h3>
+                <h2 id="balance-amount">Bs. 0.00</h2>
+                <div class="conversion-pills">
+                    <span id="conv-usd">$ 0.00</span>
+                    <span id="conv-eur">€ 0.00</span>
+                </div>
+            </div>
+
+            <div class="glass-card bcv-card">
+                <h3>Tasas Oficiales BCV</h3>
+                <div class="rate-item">
+                    <span>USD:</span> <strong id="rate-usd">0.00</strong>
+                </div>
+                <div class="rate-item">
+                    <span>EUR:</span> <strong id="rate-eur">0.00</strong>
+                </div>
+                <p class="small-text">Actualizado hoy</p>
+            </div>
+
+            <div class="glass-card actions-card">
+                <h3>Operaciones</h3>
+                <div class="input-group">
+                    <input type="number" id="transaction-amount" placeholder="Monto Bs.">
+                    <div class="btn-group">
+                        <button onclick="updateBalance('deposit')" class="btn-action deposit">Depositar</button>
+                        <button onclick="updateBalance('withdraw')" class="btn-action withdraw">Retirar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card history-card">
+                <h3>Movimientos Recientes</h3>
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
